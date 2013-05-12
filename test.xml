@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<notes>
+	<note id="note01">
+		<to>Bob</to>
+		<from>Alice</from>
+		<heading>Reminder</heading>
+		<body>Don't forget meeting this Friday!</body>
+	</note>
+	<note id="note02">
+		<to>Jane</to>
+		<from>Alice</from>
+		<heading>Reports</heading>
+		<body>TPS repots due Monday</body>
+	</note>
+	<note id="note03">
+		<to>Jane</to>
+		<from>Bob</from>
+		<heading>Build published</heading>
+		<body>A new base build has been published.</body>
+	</note>
+	<note id="note04">
+		<to>Jake</to>
+		<from>Bob</from>
+		<heading>Build published</heading>
+		<body>A new base build has been published.</body>
+	</note>
+</notes>
