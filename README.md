@@ -17,7 +17,7 @@ in the `package.json` file, so they can be retrieved using `$ npm install`.
 
 
 ## Use ##
-This isn't a full node module, so just add the dependencies to your project, and 
+This isn't a full node module so just add the dependencies to your project, and 
 put converter.js in your project path. Assuming it is in the lib folder, just 
 include it like so:
 <pre>
