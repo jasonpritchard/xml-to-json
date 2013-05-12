@@ -1,5 +1,4 @@
 # Description #
------
 XML to JSON converter. This is a quick and very dirty converter for turning 
 XML documents into JSON objects. It's by no means complete. This converter was 
 made to work with a handful of document on some of my various projects. I tried 
@@ -10,7 +9,6 @@ XML files, but this was done quickly to fill a specific need.
 
 
 ## Dependencies ##
------
 The following node dependencies will be needed for this to work. These are listed 
 in the `package.json` file, so they can be retrieved using `$ npm install`.
 
@@ -19,7 +17,6 @@ in the `package.json` file, so they can be retrieved using `$ npm install`.
 
 
 ## Use ##
------
 This isn't a full node module, so just add the dependencies to your project, and 
 put converter.js in your project path. Assuming it is in the lib folder, just 
 include it like so:
