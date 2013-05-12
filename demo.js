@@ -12,8 +12,7 @@ var fs = require('fs');
 var converter = require('./lib/converter');
 
 
-
-fs.readFile('test.xml', {encoding : 'utf-8'}, function(err, file) {
+fs.readFile('test_files/test.xml', {encoding : 'utf-8'}, function(err, file) {
 
 	// console.log('===========================================');
 	// console.log(' Original XML');
@@ -21,7 +20,7 @@ fs.readFile('test.xml', {encoding : 'utf-8'}, function(err, file) {
 	// console.log(file);
 	
 
-	// converter.toJson(file, {keepXML : true, addHelpers: true}, function(json, err) {
+	//converter.toJson(file, {keepXML : false, addHelpers: false, keepRootElem: false}, function(json, err) {
 	converter.toJson(file, function(json, err) {
 		if ( err ) {
 			console.log('**************************');
@@ -35,6 +34,8 @@ fs.readFile('test.xml', {encoding : 'utf-8'}, function(err, file) {
 		console.log(' JSON');
 		console.log('===========================================');
 		console.log(JSON.stringify(json, null, 4));
+
+		console.log( json.note[0].heading.value );
 	});
 
 });
