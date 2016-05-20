@@ -20,46 +20,47 @@ in the `package.json` file, so they can be retrieved using `$ npm install`.
 This isn't a full node module so just add the dependencies to your project, and 
 put converter.js in your project path. Assuming it is in the lib folder, just 
 include it like so:
-<pre>
-var converter = require('./lib/converter');
-</pre>
+
+	var converter = require('./lib/converter');
+
 Then it can be used on a file like so:
-<pre>
-fs.readFile('test_files/test.xml', {encoding : 'utf-8'}, function(err, file) {
 
-	converter.toJson(file, function(json, err) {
-		if ( err ) {
-			console.error(err.message);
-			return;
-		}
 
-		console.log('JSON: ');
-		console.log(JSON.stringify(json, null, 4));
+	fs.readFile('test_files/test.xml', {encoding : 'utf-8'}, function(err, file) {
+
+		converter.toJson(file, function(json, err) {
+			if ( err ) {
+				console.error(err.message);
+				return;
+			}
+
+			console.log('JSON: ');
+			console.log(JSON.stringify(json, null, 4));
+		});
+
 	});
 
-});
-</pre>
 Or:
-<pre>
-fs.readFile('test_files/test.xml', {encoding : 'utf-8'}, function(err, file) {
 
-	converter.toJson(file, {keepXML : true, addHelpers: true}, function(json, err) {
-		if ( err ) {
-			console.error(err.message);
-			return;
-		}
+	fs.readFile('test_files/test.xml', {encoding : 'utf-8'}, function(err, file) {
 
-		console.log('JSON: ');
-		console.log(JSON.stringify(json, null, 4));
+		converter.toJson(file, {keepXML : true, addHelpers: true}, function(json, err) {
+			if ( err ) {
+				console.error(err.message);
+				return;
+			}
+
+			console.log('JSON: ');
+			console.log(JSON.stringify(json, null, 4));
+		});
+
 	});
 
-});
-</pre>
 
 After the import, there's really only one method. The signature is 
-<pre>
-converter.toJson(xmlFile, [options], callback);
-</pre>
+
+	converter.toJson(xmlFile, [options], callback);
+
 * xmlFile - the xml file to convert as a string
 * options - converter options object
 	* keepXML - (boolean) flag to attach the original XML string on the result JSON
@@ -82,48 +83,48 @@ This converter doesn't really support namespaces. It just lumps elements that it
 together. Be careful if you have multiple namespaces with identical element names.
 
 Below is an example of the converter's use. Attributes are added to a child object with the key '@'. Text nodes of an element are added to a 'value' property.  I know that may seem weird, but I like addressing my document using something like value so that I know I'm dealing with text and not another node:
-<pre>
-console.log( notes.note[0].heading.value )
-</pre>
+
+	console.log( notes.note[0].heading.value )
+
 
 Example XML doc:
-<pre>
-&lt;notes&gt;
-	&lt;note id="note01"&gt;
-		&lt;to&gt;Bob&lt;/to&gt;
-		&lt;from&gt;Alice&lt;/from&gt;
-		&lt;heading&gt;Reminder&lt;/heading&gt;
-		&lt;body&gt;Don't forget meeting this Friday!&lt;/body&gt;
-	&lt;/note&gt;
-	&lt;note id="note02"&gt;
-		&lt;to&gt;Jane&lt;/to&gt;
-		&lt;from&gt;Alice&lt;/from&gt;
-		&lt;heading&gt;Reports&lt;/heading&gt;
-		&lt;body&gt;TPS repots due Monday&lt;/body&gt;
-	&lt;/note&gt;
-&lt;/notes&gt;
-</pre>
+
+	<notes>
+		<note id="note01">
+			<to>Bob</to>
+			<from>Alice</from>
+			<heading>Reminder</heading>
+			<body>Don't forget meeting this Friday!</body>
+		</note>
+		<note id="note02">
+			<to>Jane</to>
+			<from>Alice</from>
+			<heading>Reports</heading>
+			<body>TPS repots due Monday</body>
+		</note>
+	</notes>
+
 
 Example Result:
-<pre>
-{
-	"notes": {
-		"note": [
-			{
-				"@": { "id": "note01" },
-				"to"     : {"value": "Bob"},
-				"from"   : {"value": "Alice"},
-				"heading": {"value": "Reminder"},
- 				"body"   : {"value": "Don't forget meeting this Friday!"}
-			},
-			{
-				"@": { "id": "note02" },
-				"to"     : {"value": "Jane"},
-				"from"   : {"value": "Alice"},
-				"heading": {"value": "Reports"},
-				"body"   : {"value": "TPS repots due Monday"}
-			}
-		]
+
+	{
+		"notes": {
+			"note": [
+				{
+					"@": { "id": "note01" },
+					"to"     : {"value": "Bob"},
+					"from"   : {"value": "Alice"},
+					"heading": {"value": "Reminder"},
+	 				"body"   : {"value": "Don't forget meeting this Friday!"}
+				},
+				{
+					"@": { "id": "note02" },
+					"to"     : {"value": "Jane"},
+					"from"   : {"value": "Alice"},
+					"heading": {"value": "Reports"},
+					"body"   : {"value": "TPS repots due Monday"}
+				}
+			]
+		}
 	}
-}
-</pre>
+
